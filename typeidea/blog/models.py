@@ -84,6 +84,7 @@ class Post(models.Model):
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
 
+    """
     @staticmethod
     def get_by_tag(tag_id):
         try:
@@ -95,7 +96,9 @@ class Post(models.Model):
             post_list = tag.post_set.filter(status=Post.STATUS_NORMAL).select_related('owner', 'category')
         
         return post_list, tag
-    
+    """
+
+    """
     @staticmethod
     def get_by_category(category_id):
         try:
@@ -107,7 +110,8 @@ class Post(models.Model):
             post_list = category.post_set.filter(status=Post.STATUS_NORMAL).select_related('owner', 'category')
         
         return post_list, category
-    
+    """
+
     @classmethod
     def latest_posts(cls):
         queryset = cls.objects.filter(status=cls.STATUS_NORMAL)
