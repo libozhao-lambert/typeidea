@@ -21,6 +21,11 @@ class Link(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '友链'
+    
+    @classmethod
+    def get_links(cls):
+        queryset = cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-weight')
+        return queryset
 
 
 # 侧边栏Model
