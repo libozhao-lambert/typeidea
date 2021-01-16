@@ -21,6 +21,7 @@ from blog.views import post_list, post_detail
 """
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, PostSearchView, AuthorSearchView
 from config.views import LinksView
+from comment.views import CommentView
 from .custom_site import custom_site
 
 urlpatterns = [
@@ -31,6 +32,7 @@ urlpatterns = [
     url(r'^links/$', LinksView.as_view(), name='links'),
     url(r'^search/$', PostSearchView.as_view(), name='search'),
     url(r'^author/(?P<author_id>\d+)/$', AuthorSearchView.as_view(), name='author'),
+    url(r'^comment/$', CommentView.as_view(), name='comment'),
     url(r'^super_admin/', admin.site.urls, name='super-admin'),
     url(r'^admin/', custom_site.urls, name='admin'),
 ]

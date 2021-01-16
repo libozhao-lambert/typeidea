@@ -21,7 +21,7 @@ class Link(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '友链'
-        ording = ['-weight']
+        ordering = ['-weight']
     
     @classmethod
     def get_links(cls):
