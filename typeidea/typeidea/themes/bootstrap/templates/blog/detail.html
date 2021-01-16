@@ -1,10 +1,17 @@
 {% extends './base.html' %}
+{% load static %}
 {% load comment_block %}
 
 {% block title %}
     {% if post %}
     {{ post.title }}
     {% endif %}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/googlecode.min.css' %}">
+<script src="{% static 'js/highlight.min.js' %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
 
 {% block main %}
@@ -17,7 +24,11 @@
                 <span class="card-link">分类：<a href="{% url 'category-list' post.category.id %}">{{ post.category.name }}</a></span>
             </div>
             <hr/>
-            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text">
+            {% autoescape off %}
+            {{ post.content_html }}
+            {% endautoescape %}
+            </p>
         </div>
     </div>
     {% endif %}
