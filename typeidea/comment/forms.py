@@ -1,5 +1,6 @@
-from django import forms
 import mistune
+
+from django import forms
 
 from .models import Comment
 
