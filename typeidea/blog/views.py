@@ -66,15 +66,6 @@ class PostDetailView(CommonViewMixin, DetailView):
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({
-            'comment_form': CommentForm,
-            'comment_list': Comment.get_by_target(self.request.path)
-        })
-        return context
-    
-
 # Key Word Search class-based view.
 class PostSearchView(IndexView):
     def get_context_data(self, **kwargs):
