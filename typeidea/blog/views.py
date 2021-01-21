@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 
 from django.shortcuts import render
@@ -11,21 +12,24 @@ from config.models import SideBar
 from comment.forms import CommentForm
 from comment.models import Comment
 
+logger = logging.getLogger(__name__)
 
 # Common class-based view.
 class CommonViewMixin(object):
     def get_context_data(self, **kwargs):
+        logger.info('CommonViewMixin View Start')
         context = super().get_context_data(**kwargs)
         context.update({
             'sidebars': SideBar.get_all(),
         })
         context.update(Category.get_navs())
+        logger.info('CommonViewMixin View End')
         return context
 
 # Index class-based view.
 class IndexView(CommonViewMixin, ListView):
     queryset = Post.latest_posts()
-    paginate_by = 1
+    paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
 

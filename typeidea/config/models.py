@@ -67,7 +67,7 @@ class SideBar(models.Model):
             result = self.content
         elif self.display_type == self.SIDE_TYPE_LATEST_POSTS:
             context = {
-                'posts': Post.latest_posts(),
+                'posts': Post.latest_posts(with_related=False),
             }
             result = render_to_string('config/blocks/sidebar_posts.html', context)
         elif self.display_type == self.SIDE_TYPE_HOT_POSTS:
